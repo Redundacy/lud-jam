@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BossHandler : MonoBehaviour {
@@ -22,7 +23,9 @@ public class BossHandler : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        
+        HealthBar.GetComponent<HealthBar>().SetMaxValue(Health);
+        HealthBar.transform.Find("Healthtext").GetComponent<Text>().text =
+            HealthBar.GetComponent<HealthBar>().slider.value + "/" + Health;
     }
 
     // Update is called once per frame
@@ -60,5 +63,13 @@ public class BossHandler : MonoBehaviour {
             randomLocation = Random.Range(1, 4);
         }
         // todo move to location 1-4
+    }
+
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Slash") {
+            HealthBar.GetComponent<HealthBar>().SetValue(HealthBar.GetComponent<HealthBar>().slider.value - 1);
+            HealthBar.transform.Find("Healthtext").GetComponent<Text>().text =
+                HealthBar.GetComponent<HealthBar>().slider.value + "/" + Health;
+        }
     }
 }
