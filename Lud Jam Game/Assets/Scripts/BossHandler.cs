@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class BossHandler : MonoBehaviour {
     public GameObject Fireball;
     public GameObject HealthBar;
+    public GameObject WinScreen;
     public int Health = 20;
     public enum Pattern {
         Fan,
@@ -208,6 +209,10 @@ public class BossHandler : MonoBehaviour {
             DoMove(false);
             moveBuffer = 0;
             attackSpread -= .05f;
+
+            if (HealthBar.GetComponent<HealthBar>().slider.value <= 0) {
+                WinScreen.SetActive(true);
+            }
         }
     }
 }
