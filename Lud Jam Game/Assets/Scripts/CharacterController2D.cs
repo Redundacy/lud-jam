@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController2D : MonoBehaviour {
     public float MoveSpeed = 1f;
@@ -10,10 +11,12 @@ public class CharacterController2D : MonoBehaviour {
     public GameObject Slash;
     public List<Sprite> SpriteList = new List<Sprite>();
     public Animator Animator;
+    public GameObject GameOver;
 
     private Rigidbody2D _rb;
     private float inputHorizontal;
     private float inputVertical;
+    private float actualMoveSpeed;
     private int attackTime = 0;
     private bool attacking;
     private bool blocking;
@@ -26,6 +29,7 @@ public class CharacterController2D : MonoBehaviour {
         healthBar.SetMaxValue(BlockCooldown);
         GetComponent<SpriteRenderer>().sprite = SpriteList[0];
         Animator.speed = (1f / AttackSpeed);
+        actualMoveSpeed = MoveSpeed;
     }
 
     void FixedUpdate() {
@@ -47,7 +51,7 @@ public class CharacterController2D : MonoBehaviour {
         }
 
         if (Input.GetMouseButton(0) && !attacking) {
-            Debug.Log("Attack Swing!");
+            // Debug.Log("Attack Swing!");
             // if blocking, stop blocking
             if (blocking) {
                 GetComponent<BoxCollider2D>().enabled = false;
@@ -59,20 +63,22 @@ public class CharacterController2D : MonoBehaviour {
             attackTime = 0;
         }
         if (Input.GetMouseButton(1) && !attacking && healthBar.slider.value == BlockCooldown) {
-            Debug.Log("Block!");
+            // Debug.Log("Block!");
             GetComponent<BoxCollider2D>().enabled = true;
             blocking = true;
             GetComponent<SpriteRenderer>().sprite = SpriteList[1];
             // hold out the shield in front of character
             // or instead just do radius shield
+            actualMoveSpeed = 1f;
         }
         else {
             GetComponent<BoxCollider2D>().enabled = false;
             blocking = false;
             GetComponent<SpriteRenderer>().sprite = SpriteList[0];
+            actualMoveSpeed = MoveSpeed;
         }
 
-        _rb.velocity = new Vector2(inputHorizontal * MoveSpeed, inputVertical * MoveSpeed);
+        _rb.velocity = new Vector2(inputHorizontal * actualMoveSpeed, inputVertical * actualMoveSpeed);
 
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x) * Mathf.Rad2Deg - 90);
@@ -83,11 +89,13 @@ public class CharacterController2D : MonoBehaviour {
     {
         
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Bad" && !blocking) {
-            // todo reset the game
+            GameOver.SetActive(true);
+            SceneManager.LoadScene("Menu");
         } else if (collision.tag == "Bad" && blocking) {
             Destroy(collision.gameObject);
             blocking = false;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6347905785065218135}
   - component: {fileID: 6347905785065218134}
   - component: {fileID: 6347905785065218133}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Bad
   m_TagString: Bad
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.95, y: 0.75}
+  m_Size: {x: 0.95, y: 0.43}
   m_Direction: 1
 --- !u!114 &6347905785065218133
 MonoBehaviour:

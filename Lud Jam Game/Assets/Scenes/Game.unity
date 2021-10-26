@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 391581325}
   - component: {fileID: 391581324}
   - component: {fileID: 391581323}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sword Slash
   m_TagString: Slash
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
+  m_BackGroundColor: {r: 0.4056604, g: 0.20364806, b: 0.074626215, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 556181592}
   - component: {fileID: 556181594}
   - component: {fileID: 556181593}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: T Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609073763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 1.74, z: 0}
+  m_LocalPosition: {x: 0, y: 6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1727759768}
@@ -602,6 +602,18 @@ PrefabInstance:
       value: Cooldown
       objectReference: {fileID: 0}
     - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c00e10ff74b4a8c4480d7b90b1e91c42, type: 3}
+    - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
       propertyPath: m_FontData.m_VerticalOverflow
       value: 1
       objectReference: {fileID: 0}
@@ -615,7 +627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5750784383679657550, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -5.6
       objectReference: {fileID: 0}
     - target: {fileID: 5750784383679657551, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
       propertyPath: m_Layer
@@ -717,6 +729,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5750784384423045689, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c00e10ff74b4a8c4480d7b90b1e91c42, type: 3}
     - target: {fileID: 5750784384423045695, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -793,7 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1038657366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,9 +934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a611c3ce057e54e92e0fe2b92bc48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 4
   BlockCooldown: 5
-  AttackSpeed: 0.5
+  AttackSpeed: 0.25
   HealthBar: {fileID: 792282489}
   Slash: {fileID: 391581321}
   SpriteList:
@@ -1163,7 +1179,7 @@ GameObject:
   - component: {fileID: 1582470821}
   - component: {fileID: 1582470823}
   - component: {fileID: 1582470822}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: L Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1288,7 @@ GameObject:
   - component: {fileID: 1642952571}
   - component: {fileID: 1642952573}
   - component: {fileID: 1642952572}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: B Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1388,6 +1404,14 @@ PrefabInstance:
     - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
       propertyPath: m_Text
       value: BOSS HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c00e10ff74b4a8c4480d7b90b1e91c42, type: 3}
+    - target: {fileID: 5750784383679657545, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5750784383679657550, guid: a441e2ff383fabc47a56b263456f747b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1598,7 +1622,7 @@ GameObject:
   - component: {fileID: 1889862926}
   - component: {fileID: 1889862928}
   - component: {fileID: 1889862927}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: R Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
