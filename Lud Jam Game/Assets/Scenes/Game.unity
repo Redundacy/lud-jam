@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  BlockCooldown: 5
+  BlockCooldown: 6
   AttackSpeed: 0.25
   HealthBar: {fileID: 792282489}
   Slash: {fileID: 391581321}

@@ -41,7 +41,7 @@ public class CharacterController2D : MonoBehaviour {
                 SceneManager.LoadScene("Menu");
             }
             Slash.SetActive(false);
-            transform.position = new Vector3(0, 0, 0);
+            transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.identity);
             return;
         }
 
@@ -59,7 +59,7 @@ public class CharacterController2D : MonoBehaviour {
             attacking = false;
         }
 
-        if (Input.GetMouseButton(0) && !attacking) {
+        if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && !attacking) {
             // Debug.Log("Attack Swing!");
             // if blocking, stop blocking
             if (blocking) {
@@ -71,7 +71,7 @@ public class CharacterController2D : MonoBehaviour {
             attacking = true;
             attackTime = 0;
         }
-        if (Input.GetMouseButton(1) && !attacking && healthBar.slider.value >= BlockCooldown/2) {
+        if ((Input.GetMouseButton(1) || Input.GetKey(KeyCode.J)) && !attacking && healthBar.slider.value >= BlockCooldown/2) {
             // Debug.Log("Block!");
             GetComponent<BoxCollider2D>().enabled = true;
             blocking = true;

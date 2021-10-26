@@ -52,10 +52,7 @@ public class BossHandler : MonoBehaviour {
             canAttack = false;
             IEnumerator coroutine = DoAttack(pattern, 7 + (Health - (int)HealthBar.GetComponent<HealthBar>().slider.value));
             StartCoroutine(coroutine);
-            if (HealthBar.GetComponent<HealthBar>().slider.value <= 5) {
-                IEnumerator bonusAttack = DoAttack((Pattern)0, 5);
-                StartCoroutine(bonusAttack);
-            }
+            
         }
         else if (canAttack)
         {
@@ -63,10 +60,6 @@ public class BossHandler : MonoBehaviour {
             canAttack = false;
             IEnumerator coroutine = DoAttack(pattern, 7 + (Health - (int)HealthBar.GetComponent<HealthBar>().slider.value));
             StartCoroutine(coroutine);
-            if (HealthBar.GetComponent<HealthBar>().slider.value <= 5) {
-                IEnumerator bonusAttack = DoAttack((Pattern)1, 5);
-                StartCoroutine(bonusAttack);
-            }
         }
         
     }
@@ -81,7 +74,12 @@ public class BossHandler : MonoBehaviour {
             centerer += 90f;
             length = 16f;
         }
-
+        if (HealthBar.GetComponent<HealthBar>().slider.value <= 5) {
+            for (int i = 0; i < 7; i++) {
+                Instantiate(Fireball, transform.position,
+                    transform.rotation * Quaternion.Euler(0, 0, i * 10f - centerer));
+            }
+        }
 
         switch (pattern) {
             case Pattern.Fan:
@@ -216,7 +214,6 @@ public class BossHandler : MonoBehaviour {
                 HealthBar.GetComponent<HealthBar>().slider.value + "/" + Health;
             DoMove(false);
             moveBuffer = 0;
-            attackSpread -= .01f;
 
             if (HealthBar.GetComponent<HealthBar>().slider.value <= 0) {
                 WinScreen.SetActive(true);
