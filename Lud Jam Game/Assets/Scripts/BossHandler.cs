@@ -20,7 +20,7 @@ public class BossHandler : MonoBehaviour {
         Pillar,
     }
     private float randomLocation = 3;
-    private float attackSpread = 0.2f;
+    private float attackSpread = 0.25f;
     private int attackBuffer = 6;
     private bool canAttack = true;
     private int moveBuffer;

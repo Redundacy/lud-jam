@@ -40,6 +40,8 @@ public class CharacterController2D : MonoBehaviour {
             if (Input.anyKeyDown) {
                 SceneManager.LoadScene("Menu");
             }
+            Slash.SetActive(false);
+            transform.position = new Vector3(0, 0, 0);
             return;
         }
 
@@ -69,7 +71,7 @@ public class CharacterController2D : MonoBehaviour {
             attacking = true;
             attackTime = 0;
         }
-        if (Input.GetMouseButton(1) && !attacking && healthBar.slider.value == BlockCooldown) {
+        if (Input.GetMouseButton(1) && !attacking && healthBar.slider.value >= BlockCooldown/2) {
             // Debug.Log("Block!");
             GetComponent<BoxCollider2D>().enabled = true;
             blocking = true;
@@ -106,7 +108,7 @@ public class CharacterController2D : MonoBehaviour {
         } else if (collision.tag == "Bad" && blocking) {
             Destroy(collision.gameObject);
             blocking = false;
-            healthBar.slider.value = 0;
+            healthBar.slider.value -= BlockCooldown/2;
         }
     }
 }
