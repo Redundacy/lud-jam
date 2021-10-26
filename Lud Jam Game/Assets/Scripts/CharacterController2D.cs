@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour {
     private int attackTime = 0;
     private bool attacking;
     private bool blocking;
+    private bool dead = false;
     private HealthBar healthBar;
 
     // Start is called before the first frame update
@@ -35,6 +36,12 @@ public class CharacterController2D : MonoBehaviour {
     void FixedUpdate() {
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
+        if (dead) {
+            if (Input.anyKeyDown) {
+                SceneManager.LoadScene("Menu");
+            }
+            return;
+        }
 
         if (healthBar.slider.value < BlockCooldown) {
             healthBar.slider.value += (1f / 60);
@@ -95,7 +102,7 @@ public class CharacterController2D : MonoBehaviour {
     {
         if (collision.tag == "Bad" && !blocking) {
             GameOver.SetActive(true);
-            SceneManager.LoadScene("Menu");
+            dead = true;
         } else if (collision.tag == "Bad" && blocking) {
             Destroy(collision.gameObject);
             blocking = false;

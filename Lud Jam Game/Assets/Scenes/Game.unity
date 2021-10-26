@@ -660,7 +660,7 @@ MonoBehaviour:
   Fireball: {fileID: 6347905785065218129, guid: a742735c521d7234bbdaa72dd80e6b99, type: 3}
   HealthBar: {fileID: 1727759769}
   WinScreen: {fileID: 424999309}
-  Health: 20
+  Health: 15
 --- !u!1 &792282489 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5750784385176836249, guid: a441e2ff383fabc47a56b263456f747b, type: 3}

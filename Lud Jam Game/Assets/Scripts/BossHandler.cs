@@ -11,7 +11,7 @@ public class BossHandler : MonoBehaviour {
     public GameObject Fireball;
     public GameObject HealthBar;
     public GameObject WinScreen;
-    public int Health = 20;
+    public int Health = 15;
     public enum Pattern {
         Fan,
         Line,
@@ -20,7 +20,7 @@ public class BossHandler : MonoBehaviour {
         Pillar,
     }
     private float randomLocation = 3;
-    private float attackSpread = 0.25f;
+    private float attackSpread = 0.2f;
     private int attackBuffer = 6;
     private bool canAttack = true;
     private int moveBuffer;
@@ -41,7 +41,7 @@ public class BossHandler : MonoBehaviour {
             moveBuffer++;
         }
 
-        if (moveBuffer > 5) {
+        if (moveBuffer > 3) {
             transform.position = new Vector3(0, 2.5f);
             moveBuffer = 0;
         }
@@ -52,6 +52,10 @@ public class BossHandler : MonoBehaviour {
             canAttack = false;
             IEnumerator coroutine = DoAttack(pattern, 7 + (Health - (int)HealthBar.GetComponent<HealthBar>().slider.value));
             StartCoroutine(coroutine);
+            if (HealthBar.GetComponent<HealthBar>().slider.value <= 5) {
+                IEnumerator bonusAttack = DoAttack((Pattern)0, 5);
+                StartCoroutine(bonusAttack);
+            }
         }
         else if (canAttack)
         {
@@ -59,6 +63,10 @@ public class BossHandler : MonoBehaviour {
             canAttack = false;
             IEnumerator coroutine = DoAttack(pattern, 7 + (Health - (int)HealthBar.GetComponent<HealthBar>().slider.value));
             StartCoroutine(coroutine);
+            if (HealthBar.GetComponent<HealthBar>().slider.value <= 5) {
+                IEnumerator bonusAttack = DoAttack((Pattern)1, 5);
+                StartCoroutine(bonusAttack);
+            }
         }
         
     }
@@ -105,7 +113,7 @@ public class BossHandler : MonoBehaviour {
                             new Vector3(transform.position.x,
                                 transform.position.y + length / 2 - i * (length / amount) - 0.5f),
                             transform.rotation * Quaternion.Euler(0, 0, centerer - 30f));
-                        yield return new WaitForSeconds(0.8f);
+                        yield return new WaitForSeconds(0.5f);
                     }
                 }
                 break;
@@ -133,7 +141,7 @@ public class BossHandler : MonoBehaviour {
                         Instantiate(Fireball,
                             new Vector3(transform.position.x, transform.position.y),
                             transform.rotation * Quaternion.Euler(0, 0, centerer - 30f));
-                        yield return new WaitForSeconds(0.8f);
+                        yield return new WaitForSeconds(0.5f);
                     }
                     for (int i = (amount / 2) - 1; i >= 0; i--) {
                         Instantiate(Fireball,
@@ -144,7 +152,7 @@ public class BossHandler : MonoBehaviour {
                             new Vector3(transform.position.x,
                                 transform.position.y - length / 2 + i * (length / amount)),
                             transform.rotation * Quaternion.Euler(0, 0, centerer - 30f));
-                        yield return new WaitForSeconds(0.8f);
+                        yield return new WaitForSeconds(0.5f);
                     }
                 }
                 break;
@@ -158,10 +166,10 @@ public class BossHandler : MonoBehaviour {
                     }
                 }
                 else {
-                    for (int i = 0; i < amount; i++) {
+                    for (int i = 0; i < 8; i++) {
                         Instantiate(Fireball,
                             new Vector3(transform.position.x,
-                                transform.position.y + length / 2 - i * (length / amount) - 0.5f),
+                                transform.position.y + length / 2 - i * (length / 8) - 0.5f),
                             transform.rotation * Quaternion.Euler(0, 0, centerer - 30f));
                     }
                 }
@@ -208,7 +216,7 @@ public class BossHandler : MonoBehaviour {
                 HealthBar.GetComponent<HealthBar>().slider.value + "/" + Health;
             DoMove(false);
             moveBuffer = 0;
-            attackSpread -= .05f;
+            attackSpread -= .01f;
 
             if (HealthBar.GetComponent<HealthBar>().slider.value <= 0) {
                 WinScreen.SetActive(true);
